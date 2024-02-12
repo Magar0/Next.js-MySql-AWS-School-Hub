@@ -35,6 +35,20 @@ body {
   box-sizing: border-box;
 }
 
+
+.navbar a {
+  padding: 7px 13px;
+  border: solid 1px blue;
+  border-radius: 5px;
+  background-color: #e7f8fe;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.navbar a:hover {
+  background-color: rgb(202, 188, 188);
+}
+
 .card-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

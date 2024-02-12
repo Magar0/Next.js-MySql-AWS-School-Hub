@@ -1,5 +1,4 @@
 import connectDb from "@/utils/connectDb";
-import Navbar from "./components/navbar/Navbar";
 import SchoolCard from "./components/card/Card";
 
 export default async function Home() {
@@ -12,7 +11,6 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar />
       <div className="card-list">
         {data &&
           data.map(e => (

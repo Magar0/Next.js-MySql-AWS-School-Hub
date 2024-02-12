@@ -2,15 +2,23 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 
 const AddSchool = () => {
+    const router = useRouter();
+    const [selectedImage, setSelectedImage] = useState(null);
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 
+    const handleImageChange = (event) => {
+        setSelectedImage(event.target.files[0])
+    }
     const addSchool = async (data) => {
         try {
-            const response = await axios.post('/api/schools', data)
-            // console.log(response);
+            await axios.post('/api/schools', { ...data, image: selectedImage })
+            console.log("school added successfully");
+            router.push('/')
+
         } catch (err) {
             if (err.response.data.message) {
                 console.log("Error: ", err.response.data.message);
@@ -24,8 +32,16 @@ const AddSchool = () => {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
-            <form onSubmit={handleSubmit((data) => addSchool(data))} className="flex flex-col gap-5 w-3/5 border border-slate-400 rounded-lg py-10 px-20 ">
+            <form enctype="multipart/form-data" onSubmit={handleSubmit((data) => addSchool(data))} className="flex flex-col gap-5 w-3/5 border border-slate-400 rounded-lg py-10 px-20 ">
                 <h3 className="text-2xl font-bold tracking-widest">School  Details</h3>
+
+                <div className="flex flex-col mb-3">
+                    <label htmlFor="image">Image : </label>
+                    <input type="file" id="image" accept="image/*" onChange={handleImageChange} />
+                    {selectedImage && <img src={URL.createObjectURL(selectedImage)} alt="Preview" />}
+                    <p className="text-red-500">{errors.image?.message}</p>
+
+                </div>
                 <div className="flex flex-col mb-3">
                     <label htmlFor="name">Name : </label>
                     <input className="py-1 px-3 border border-slate-400 rounded-lg" id="name" type="text" {...register("name", { required: "Please type your name" })} placeholder="Type your Name" />
