@@ -34,3 +34,12 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin: 0 20px;
+  padding: 30px 50px;
+  background-color: rgb(214, 213, 212);
+  gap: 70px;
+}

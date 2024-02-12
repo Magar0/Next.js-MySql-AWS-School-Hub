@@ -1,10 +1,25 @@
-import AddSchool from "./components/AddSchool";
+import connectDb from "@/utils/connectDb";
+import Navbar from "./components/navbar/Navbar";
+import SchoolCard from "./components/card/Card";
 
-export default function Home() {
+export default async function Home() {
+
+  // const response = await fetch('http://localhost:3000/api/schools')
+
+  const [data] = await connectDb.query(
+    'Select * from schools'
+  );
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <AddSchool />
-    </main>
+    <>
+      <Navbar />
+      <div className="card-list">
+        {data &&
+          data.map(e => (
+            <SchoolCard key={e.id} school={e} />
+          ))
+        }
+      </div>
+    </>
   );
 }
