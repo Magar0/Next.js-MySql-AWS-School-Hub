@@ -4,6 +4,7 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Schema](#schema)
 
 ## General info
 <img src="https://github.com/Magar0/Next.js-MySql-schools-collection-website/assets/35245789/429ce622-69a9-4556-924c-e27f2fa87eeb" height="350" >
@@ -31,4 +32,17 @@ To run this project, install required dependencies using npm then run:
 ```
  npm install
  npm run dev
+```
+## Schema
+```
+create table schools(
+id int auto_increment primary key,
+name varchar(255) not null,
+address varchar(255),
+city varchar(255) not null,
+state varchar(255) not null,
+contact varchar(15) unique,
+image varchar(255),
+email_id varchar(255) unique not null
+);
 ```
