@@ -4,7 +4,6 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [API Endpoints](#api-endpoints)
 
 ## General info
 <img src="https://github.com/Magar0/Next.js-MySql-schools-collection-website/assets/35245789/429ce622-69a9-4556-924c-e27f2fa87eeb" height="350" >
@@ -25,6 +24,7 @@
 ## Setup
 
 setting up database
+
 import 'assignments_schools.sql' file in your sql server. (file is in database folder)
 
 To run this project, install required dependencies using npm then run:
