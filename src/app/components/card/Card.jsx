@@ -2,13 +2,14 @@
 import React from 'react';
 import { Card } from 'antd';
 import Link from 'next/link';
+import Image from 'next/image';
+import Rating from '../rating/page';
 const { Meta } = Card;
 
 const SchoolCard = ({ school }) => {
 
 
     const { id, name, address, city, image } = school;
-    console.log(school);
 
     return (
 
@@ -18,8 +19,9 @@ const SchoolCard = ({ school }) => {
                 style={{
                     width: 240, height: "maxContent"
                 }}
-                cover={< img alt="example" src={image ? image : "/noImage.jpg"} />}
+                cover={< Image className='image-school' alt="example" src={image ? image.substring(8) : "/noImage.jpg"} height={200} width={150} />}
             >
+                <Rating />
                 <Meta title={name} description={`${address}, ${city}`} />
             </Card >
         </Link>

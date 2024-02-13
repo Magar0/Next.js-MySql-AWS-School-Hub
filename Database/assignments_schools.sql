@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `assignments` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `assignments`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: assignments
@@ -30,13 +28,13 @@ CREATE TABLE `schools` (
   `address` varchar(255) DEFAULT NULL,
   `city` varchar(255) NOT NULL,
   `state` varchar(255) NOT NULL,
-  `contact` int DEFAULT NULL,
+  `contact` varchar(15) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `email_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_id` (`email_id`),
   UNIQUE KEY `contact` (`contact`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +43,7 @@ CREATE TABLE `schools` (
 
 LOCK TABLES `schools` WRITE;
 /*!40000 ALTER TABLE `schools` DISABLE KEYS */;
-INSERT INTO `schools` VALUES (1,'fgdg','vbcvb','gfhfg','fghf',4524,'','fgdg@dfgv'),(2,'fgdgfg','vbcvb','gfhfg','fghf',452474,'','fgdg@dfgvfdg');
+INSERT INTO `schools` VALUES (1,'Jagannath Barooah College','Jb road','Jorhat','Assam','7662871815','./public/schoolImages/1707814229301jb.webp','jbcollege@gmail.com'),(2,'Crescent Academy',NULL,'Jorhat','Assam','7002175147','./public/schoolImages/1707814286358crescent.jpg','crescentAcademy@gmail.com'),(3,'Edwise University','Sydney, Australia','Sydney','Sydney','7002175148','./public/schoolImages/1707814358444edwise.jpg','edwise@some.com'),(4,'Govt Girls High School','Baruah Charali','Jorhat','Assam','7002175144','./public/schoolImages/1707814400829govt girls.webp','givtgirls@gov.in'),(5,'Cotton University',NULL,'Guwahati','Assam','7002175142','','cotton@gmail.com'),(6,'Delhi Public high School',NULL,'Delhi','Delhi','7002175125','','delhipublic@gmail.com'),(7,'Oxford University','Oxford England','Oxford','Oxford','766248541','./public/schoolImages/1707814823004oxford.jpg','oxford@gmail.com');
 /*!40000 ALTER TABLE `schools` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-13  2:17:00
+-- Dump completed on 2024-02-13 14:32:01

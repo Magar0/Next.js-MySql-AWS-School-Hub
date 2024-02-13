@@ -57,3 +57,12 @@ body {
   background-color: rgb(214, 213, 212);
   gap: 70px;
 }
+
+.preview-image {
+  max-width: 200px;
+}
+
+.image-school {
+  height: 200px;
+  width: 300px;
+}

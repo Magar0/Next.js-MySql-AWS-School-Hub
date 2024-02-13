@@ -1,7 +1,6 @@
 'use client'
 
 import { FaSearch } from "react-icons/fa";
-// import logo from 'next.svg'
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
