@@ -3,6 +3,7 @@
 import { FaSearch } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
 
@@ -13,7 +14,7 @@ const Navbar = () => {
             <nav className=''>
                 <div className="navbar flex gap-5 w-screen m-auto justify-between items-center bg-slate-200 py-4 px-10 ">
                     <Link href={'/'}>
-                        <img src='/logo.png' width={40} alt='logo' />
+                        <Image src='/logo.png' width={40} height={40} alt='logo' />
                     </Link>
 
                     <div className="flex gap-5 w-2/5">

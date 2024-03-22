@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react';
 import { Flex, Rate } from 'antd';
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];

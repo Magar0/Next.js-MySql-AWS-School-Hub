@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation';
 import React from 'react'
 
-const School = async () => {
+const School = () => {
 
     const param = useParams()
     const { id } = param;

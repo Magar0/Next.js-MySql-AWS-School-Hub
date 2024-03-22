@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { RxCross2 } from "react-icons/rx";
+import Image from "next/image";
 
 
 const AddSchool = () => {
@@ -63,7 +64,7 @@ const AddSchool = () => {
                     {selectedImage &&
                         <>
                             <div className="flex g-10">
-                                <img src={URL.createObjectURL(selectedImage)} alt="Preview" className="preview-image" />
+                                <Image src={URL.createObjectURL(selectedImage)} alt="Preview" className="preview-image" height={100} width={100} />
                                 <RxCross2 className="float-right cursor-pointer" color="red" onClick={() => setSelectedImage(null)} />
                             </div>
                             <p className="text-red-500">{errors.image?.message}</p>
