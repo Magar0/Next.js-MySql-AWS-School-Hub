@@ -19,7 +19,7 @@ const SchoolCard = ({ school }) => {
                 style={{
                     width: 240, height: "maxContent"
                 }}
-                cover={< Image className='image-school' alt="example" src={image ? image.substring(8) : "/noImage.jpg"} height={200} width={150} />}
+                cover={< Image className='image-school' alt="example" src={image ? image : "/noImage.jpg"} height={200} width={150} />}
             >
                 <Rating />
                 <Meta title={name} description={`${address}, ${city}`} />

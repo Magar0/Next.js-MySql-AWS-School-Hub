@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: assignments
+-- Host: aws-mysql.cdwasac4a1h1.ap-south-1.rds.amazonaws.com    Database: aws_testing
 -- ------------------------------------------------------
--- Server version	8.3.0
+-- Server version	8.0.36
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,14 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
+SET @@SESSION.SQL_LOG_BIN= 0;
+
+--
+-- GTID state at the beginning of the backup 
+--
+
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '';
 
 --
 -- Table structure for table `schools`
@@ -32,20 +40,10 @@ CREATE TABLE `schools` (
   `image` varchar(255) DEFAULT NULL,
   `email_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email_id` (`email_id`),
-  UNIQUE KEY `contact` (`contact`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `email_id` (`email_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `schools`
---
-
-LOCK TABLES `schools` WRITE;
-/*!40000 ALTER TABLE `schools` DISABLE KEYS */;
-INSERT INTO `schools` VALUES (1,'Jagannath Barooah College','Jb road','Jorhat','Assam','7662871815','./public/schoolImages/1707814229301jb.webp','jbcollege@gmail.com'),(2,'Crescent Academy',NULL,'Jorhat','Assam','7002175147','./public/schoolImages/1707814286358crescent.jpg','crescentAcademy@gmail.com'),(3,'Edwise University','Sydney, Australia','Sydney','Sydney','7002175148','./public/schoolImages/1707814358444edwise.jpg','edwise@some.com'),(4,'Govt Girls High School','Baruah Charali','Jorhat','Assam','7002175144','./public/schoolImages/1707814400829govt girls.webp','givtgirls@gov.in'),(5,'Cotton University',NULL,'Guwahati','Assam','7002175142','','cotton@gmail.com'),(6,'Delhi Public high School',NULL,'Delhi','Delhi','7002175125','','delhipublic@gmail.com'),(7,'Oxford University','Oxford England','Oxford','Oxford','766248541','./public/schoolImages/1707814823004oxford.jpg','oxford@gmail.com');
-/*!40000 ALTER TABLE `schools` ENABLE KEYS */;
-UNLOCK TABLES;
+SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -56,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-13 14:32:01
+-- Dump completed on 2024-03-22 21:54:27

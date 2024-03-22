@@ -1,20 +1,29 @@
 import connectDb from "@/utils/connectDb";
 import { NextResponse } from "next/server";
-import { writeFile } from 'fs/promises'
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+// import { writeFile } from 'fs/promises'
 
-//GET all school data
-// export async function GET() {
-//     try {
-//         const [result] = await connectDb.query(
-//             'Select * from schools'
-//         );
-//         console.log(result);
-//         return NextResponse.json({ message: "School added successfully" }, { status: 201 })
-//     } catch (err) {
-//         // console.log(err);
-//         NextResponse.json({ message: "Error adding school" }, { status: 500 })
-//     }
-// }
+// making connection to AWS S3
+const s3client = new S3Client({
+    region: process.env.NEXT_PUBLIC_AWS_S3_REGION,
+    credentials: {
+        accessKeyId: process.env.NEXT_PUBLIC_AWS_S3_ACCESS_KEY_ID,
+        secretAccessKey: process.env.NEXT_PUBLIC_AWS_S3_SECRET_ACCESS_KEY,
+    }
+})
+
+const uploadToAwsS3 = async (buffer, fileName) => {
+    const params = {
+        Bucket: process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME,
+        Key: `img/${fileName}`,
+        Body: buffer,
+        ContentType: "image/jpg"
+    }
+    const command = new PutObjectCommand(params);
+    await s3client.send(command)
+    const imageUrl = `https://${process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME}.s3.${process.env.NEXT_PUBLIC_AWS_S3_REGION}.amazonaws.com/img/${fileName}`
+    return imageUrl;
+}
 
 
 //add schools
@@ -45,10 +54,15 @@ export async function POST(req, res) {
         if (imageFile) {
             const byteData = await imageFile.arrayBuffer();
             const buffer = Buffer.from(byteData);
-            const filename = Date.now() + imageFile.name
-            const path = `./public/schoolImages/${filename}`
-            await writeFile(path, buffer)
-            image = imageFile ? path : '';
+            const filename = Date.now() + "_" + imageFile.name
+
+            // to upload AWS S3 
+            image = await uploadToAwsS3(buffer, filename)
+
+            // to upload to local machine public folder
+            // const path = `./public/schoolImages/${filename}`
+            // await writeFile(path, buffer)
+            // image = imageFile ? path : '';
         }
         const [result] = await connectDb.query(
             `insert into schools (name, address, city, state, contact, image, email_id) values (?, ?, ?, ?, ?, ?, ?)`,
@@ -64,3 +78,20 @@ export async function POST(req, res) {
         NextResponse.json({ message: "Error adding school" }, { status: 500 })
     }
 }
+
+
+
+
+//GET all school data
+// export async function GET() {
+//     try {
+//         const [result] = await connectDb.query(
+//             'Select * from schools'
+//         );
+//         console.log(result);
+//         return NextResponse.json({ message: "School added successfully" }, { status: 201 })
+//     } catch (err) {
+//         // console.log(err);
+//         NextResponse.json({ message: "Error adding school" }, { status: 500 })
+//     }
+// }
