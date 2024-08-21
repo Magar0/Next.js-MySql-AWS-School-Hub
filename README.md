@@ -1,4 +1,4 @@
-# `Stack overflow clone using MERN stack`
+# `School Website`
 
 sort video of this project:-
 https://github.com/Magar0/Next.js-MySql-schools-collection-website/assets/35245789/19a7f69e-d3c8-4d9c-98ba-930c2d381d8c
